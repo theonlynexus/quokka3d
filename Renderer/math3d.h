@@ -199,7 +199,7 @@ namespace Quokka3D
     class Transform3D
     {
     public:
-        Transform3D() { setAngle(0.0f, 0.0f, 0.0f); };
+        Transform3D() { m_location = Vector3D(0.0f, 0.0f, 0.0f); setAngle(0.0f, 0.0f, 0.0f); };
         Transform3D(float x, float y, float z) { m_location = Vector3D(x, y, z); setAngle(0.0f, 0.0f, 0.0f); }
 
         // default copy ctor and assignment should be ok as no pointers are used
@@ -288,25 +288,31 @@ namespace Quokka3D
         Polygon3D& operator += (const Vector3D&);
         Polygon3D& operator -= (const Vector3D&);
 
-        size_t getNumVertices() const { return m_numVertices; }
+        int getNumVertices() const { return m_numVertices; }
         void project(ViewWindow&);
         void add(Transform3D&);
         void subtract(Transform3D&);
         Vector3D& calcNormal();
         Vector3D getNormal() const { return m_normal; }
         void setNormal(const Vector3D& v) { m_normal = v; }
-        bool isFacing(const Vector3D& v) const;
+        bool isFacing(const Vector3D&) const;
+        void ensureCapacity(int length);
+        bool clip(float);
 
+    protected:
+        void insertVertex(int index, float x, float y, float z);
+        void deleteVertex(int index);
 
     private:
         Vec3DArray m_vec3DArray ;   // A polygon is a vector(an array really) of Vector3D
-        size_t m_numVertices;       // The number of vertices in the polygon
+        int m_numVertices;       // The number of vertices in the polygon
         Vector3D m_normal;          // The normalized normal vector for the polygon
+
 
     };  // Polygon3D
 
 
-} // Soft3D
+} // Quokka3D
 
 
 
