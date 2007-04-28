@@ -8,6 +8,7 @@ namespace Quokka3D
     class ViewWindow
     {
     public:
+        ViewWindow() {m_angle = m_distanceToCamera = 0.0f; }
         ViewWindow(int left, int top, int width, int height, float angle);
         void setBounds(int left, int top, int width, int height);
         void setAngle(float angle) { m_angle = angle; m_distanceToCamera = (m_bounds.width/2) / tan(m_angle/2.0f); }
