@@ -42,12 +42,13 @@ public:
 
         Polygon3D poly(v0, v1, v2, v3);
         
-
-        //Vector3D v4(1,2,3), v5(10,9,7);
-        //v4 *= 4;
-        //v4 /= 2.0f;
-        //v5 = 2 * (v5 - v4) ;
-        //cout << v5;
+        vector<int> a1(5,9), a2(2,3);
+        cout << a1.size() << endl;
+        cout << a2.size() << endl;
+        a1 = a2;
+        cout << a1.size() << endl;
+        cout << a2.size() << endl;
+        
 
         // register listener
         display.listener(this);

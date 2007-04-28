@@ -181,11 +181,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\polygonrenderer.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\primitives.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Renderer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\scanconverter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\solidpolygonrenderer.cpp"
 				>
 			</File>
 			<File
@@ -203,7 +215,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\polygonrenderer.h"
+				>
+			</File>
+			<File
 				RelativePath=".\primitives.h"
+				>
+			</File>
+			<File
+				RelativePath=".\scanconverter.h"
+				>
+			</File>
+			<File
+				RelativePath=".\solidpolygon3d.h"
+				>
+			</File>
+			<File
+				RelativePath=".\solidpolygonrenderer.h"
 				>
 			</File>
 			<File
