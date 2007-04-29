@@ -197,6 +197,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\simpletest2.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\solidpolygonrenderer.cpp"
 				>
 			</File>

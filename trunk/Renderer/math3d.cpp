@@ -281,8 +281,7 @@ Polygon3D& Polygon3D::operator -= (const Vector3D& v)
 
 void Polygon3D::add(Transform3D& xform) 
 {
-      //addRotation(xform);
-        
+     addRotation(xform);
     *this += xform.getLocation();
 }
 
@@ -291,7 +290,23 @@ void Polygon3D::subtract(Transform3D& xform)
 {
     
     *this -= xform.getLocation();
-    // subtractRotation(xform);
+    subtractRotation(xform);
+}
+
+
+void Polygon3D::addRotation(Transform3D& xform) {
+    for (int i=0; i!=m_numVertices; i++) {
+        m_vec3DArray[i].addRotation(xform);
+    }
+    m_normal.addRotation(xform);
+}
+
+
+void Polygon3D::subtractRotation(Transform3D& xform) {
+    for (int i=0; i!=m_numVertices; i++) {
+        m_vec3DArray[i].subtractRotation(xform);
+    }
+    m_normal.subtractRotation(xform);
 }
 
 

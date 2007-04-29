@@ -292,6 +292,8 @@ namespace Quokka3D
         void project(ViewWindow&);
         void add(Transform3D&);
         void subtract(Transform3D&);
+        void addRotation(Transform3D&);
+        void subtractRotation(Transform3D&);
         Vector3D& calcNormal();
         Vector3D getNormal() const { return m_normal; }
         void setNormal(const Vector3D& v) { m_normal = v; }
