@@ -14,17 +14,19 @@ namespace Quokka3D
 
     void PolygonRenderer::init(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame)
     {
-        m_scanConverter = ScanConverter(viewWindow);
         m_camera = camera;
+        m_viewWindow = viewWindow;
         m_clearViewEveryFrame = clearViewEveryFrame;
+        m_scanConverter = ScanConverter(viewWindow);
+        
     }
 
-    bool PolygonRenderer::draw(Polygon3D& poly)
+    bool PolygonRenderer::draw(Polygon3D* poly)
     {
-        if (poly.isFacing(m_camera.getLocation()))
+        if ((*poly).isFacing(m_camera.getLocation()))
         {
             m_sourcePolygon = poly; // save the source poly in case data is needed later
-            m_destPolygon = poly;
+            m_destPolygon = *poly;
             m_destPolygon.subtract(m_camera);
             bool visible = m_destPolygon.clip(-1.0f);
             if (visible)

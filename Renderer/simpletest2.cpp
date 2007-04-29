@@ -1,4 +1,3 @@
-/*
 // Renderer.cpp : Defines the entry point for the console application.
 //
 
@@ -6,6 +5,9 @@
 #include "math3D.h"
 #include "primitives.h"
 #include "viewwindow.h"
+#include "solidpolygon3d.h"
+#include "polygonrenderer.h"
+#include "solidpolygonrenderer.h"
 #include "PixelToaster.h"
 
 
@@ -28,9 +30,9 @@ public:
 
     Application()
     {
-        
+
         quit = false;
-        z = -300.0f;
+        z = 100.0f;
         x = 0.0f;
     }
 
@@ -39,56 +41,27 @@ public:
     {
         Display display( "Fullscreen Example", width, height, Output::Windowed, Mode::TrueColor );
 
-        Vector3D v0(-50.0f, -50.0f, 0.0f), v1(50.0f, -50.0f, 0.0f), v2(0.0f, 50.0f, 0.0f), v3(0.0f, -50.0f, 100.0f);
-
-        Polygon3D poly(v0, v1, v2, v3);
-        
-        vector<int> a1(5,9), a2(2,3);
-        cout << a1.size() << endl;
-        cout << a2.size() << endl;
-        a1 = a2;
-        cout << a1.size() << endl;
-        cout << a2.size() << endl;
-        
+        Vector3D v0(-50.0f, -50.0f, 0.0f);
+        Vector3D v1( 50.0f, -50.0f, 0.0f);
+        Vector3D v2(  0.0f,  50.0f, 0.0f);
 
         // register listener
         display.listener(this);
-    
-        Transform3D transform(x, 0.0f, z);
-        ViewWindow view(0, 0, width, height, DegToRad(75));
-        Polygon3D transformedPolygon;
-        Vector3D vt0;
-        Vector3D vt1;
-        Vector3D vt2;
-        Vector3D vt3;
-
         
+        ViewWindow view(0, 0, width, height, DegToRad(75));
+        Transform3D camera(x, 0.0f, 150.0f);
+        camera.rotateAngleY(DegToRad(20.0f));
+        PolygonRenderer& polygonRenderer = SolidPolygonRenderer(camera, view);
+        SolidPolygon3D poly(v0, v1, v2);
+        poly.setColor(MAKE_RGB32(0, 255, 0));
 
         while (!quit)
         {
-            transform.setLocation(Vector3D(x, 0.0f, z));
-            transformedPolygon = poly;
-            transformedPolygon.add(transform);
-            transformedPolygon.project(view);
-
-            vt0 = transformedPolygon[0];
-            vt1 = transformedPolygon[1];
-            vt2 = transformedPolygon[2];
-            vt3 = transformedPolygon[3];
-
-            cls();
-
-            line_fast((int)vt0.x, (int)vt0.y, (int)vt1.x, (int)vt1.y, MAKE_RGB32(255, 0, 0));
-            line_fast((int)vt1.x, (int)vt1.y, (int)vt2.x, (int)vt2.y, MAKE_RGB32(255, 255, 0));
-            line_fast((int)vt2.x, (int)vt2.y, (int)vt0.x, (int)vt0.y, MAKE_RGB32(255, 0, 255));
-            line_fast((int)vt0.x, (int)vt0.y, (int)vt3.x, (int)vt3.y, MAKE_RGB32(0, 255, 0));
-            line_fast((int)vt1.x, (int)vt1.y, (int)vt3.x, (int)vt3.y, MAKE_RGB32(0, 0, 255));
-            line_fast((int)vt2.x, (int)vt2.y, (int)vt3.x, (int)vt3.y, MAKE_RGB32(255,255, 255));
-            
+            polygonRenderer.draw(&poly);
             display.update( pixels );
         }
 
-	    return 0;
+        return 0;
     }
 
 protected:
@@ -159,18 +132,18 @@ private:
     //Display display;//  ( "Fullscreen Example", width, height, Output::Windowed, Mode::TrueColor );
     bool quit;
     float z, x;
+    
 
 };
 
 
-int main1(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
     Application app;
     app.run();
-    return 0;
-    
+
 
 }
-*/
+
 
 

@@ -17,14 +17,14 @@ namespace Quokka3D
         Transform3D getCamera() const { return m_camera; }
         void startFrame() {};
         void endFrame() {};
-        bool draw(Polygon3D& poly);
+        bool draw(Polygon3D* poly);
 
     protected:
         ScanConverter m_scanConverter;
         Transform3D m_camera;
         ViewWindow m_viewWindow;
         bool m_clearViewEveryFrame;
-        Polygon3D m_sourcePolygon;
+        Polygon3D* m_sourcePolygon;
         Polygon3D m_destPolygon;
 
         void init(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame);
