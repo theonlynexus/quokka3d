@@ -14,7 +14,7 @@ namespace Quokka3D
         PolygonRenderer() {}
         PolygonRenderer(Transform3D& camera, ViewWindow& viewWindow);
         PolygonRenderer(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame);
-        Transform3D getCamera() const { return m_camera; }
+        Transform3D& getCamera()  { return m_camera; }
         void startFrame() {};
         void endFrame() {};
         bool draw(Polygon3D* poly);

@@ -17,6 +17,7 @@ namespace Quokka3D
 
     void cls();
     void line_fast(int x1, int y1, int x2, int y2, TRUECOLOR color);
+    void line_fast(int x1, int x2, int y, unsigned int color);
     void plot_pixel(int x,int y, TRUECOLOR color);
 
 }

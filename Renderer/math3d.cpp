@@ -237,6 +237,7 @@ Polygon3D::Polygon3D(Vector3D& v0, Vector3D& v1, Vector3D& v2)
     m_vec3DArray.push_back(v0);
     m_vec3DArray.push_back(v1);
     m_vec3DArray.push_back(v2);
+    calcNormal();
 }
 
 
@@ -247,6 +248,7 @@ Polygon3D::Polygon3D(Vector3D& v0, Vector3D& v1, Vector3D& v2, Vector3D& v3)
     m_vec3DArray.push_back(v1);
     m_vec3DArray.push_back(v2);
     m_vec3DArray.push_back(v3);
+    calcNormal();
 }
 
 
@@ -254,6 +256,7 @@ Polygon3D::Polygon3D(Vec3DArray& v)
 {
     m_numVertices = (int)v.size();
     m_vec3DArray = v;           // possibly slow?
+    calcNormal();
 }
 
 
@@ -281,15 +284,20 @@ Polygon3D& Polygon3D::operator -= (const Vector3D& v)
 
 void Polygon3D::add(Transform3D& xform) 
 {
+    // rotate
      addRotation(xform);
+
+    // translate
     *this += xform.getLocation();
 }
 
 
 void Polygon3D::subtract(Transform3D& xform) 
 {
-    
+    // translate
     *this -= xform.getLocation();
+
+    // rotate
     subtractRotation(xform);
 }
 

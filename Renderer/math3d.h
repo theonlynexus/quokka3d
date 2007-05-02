@@ -10,6 +10,13 @@
 #ifndef MATH3D_H
 #define MATH3D_H
 
+// Avoid opening the header again for MS VC++
+#ifdef _MSC_VER
+#pragma once
+#endif
+
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -204,7 +211,7 @@ namespace Quokka3D
 
         // default copy ctor and assignment should be ok as no pointers are used
 
-        Vector3D getLocation() const { return m_location; }
+        Vector3D& getLocation() { return m_location; }
 
         void setLocation(const Vector3D& v) { m_location = v; } 
 
