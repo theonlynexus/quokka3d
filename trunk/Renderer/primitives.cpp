@@ -35,6 +35,16 @@ namespace Quokka3D
          
     }
 
+    // Draw a horizontal line
+    void line_fast(int x1, int x2, int y, unsigned int color)
+    {
+        for (int x=x1; x<=x2; ++x)
+        {
+            plot_pixel(x, y, color);
+        }
+    }
+
+
     /**************************************************************************
      *    line_fast                                                           *
      *    draws a line using Bresenham's line-drawing algorithm, which uses   *

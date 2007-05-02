@@ -43,7 +43,7 @@ namespace Quokka3D
             void setBoundary(int x) { if (x < left) left = x; if (x-1 > right) right = x-1; }
             void clear() { left = INT_MAX; right = INT_MIN; }
             bool isValid() const { return (left <= right); }
-            void setTo(int left, int right) { this->left = left; this->right; }
+            void setTo(int left, int right) { this->left = left; this->right = right; }
             bool equals(int left, int right) { return (this->left == left && this->right == right); }
         };
 
