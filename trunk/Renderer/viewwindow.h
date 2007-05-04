@@ -1,7 +1,7 @@
 #ifndef VIEWWINDOW_H
 #define VIEWWINDOW_H
 
-#include "math3D.h"
+#include "vector3d.h"
 
 namespace Quokka3D 
 {

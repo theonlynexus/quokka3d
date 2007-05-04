@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-#include "math3D.h"
+#include "vector3d.h"
 #include "primitives.h"
 #include "viewwindow.h"
 #include "solidpolygon3d.h"
@@ -30,73 +30,113 @@ public:
 
     Application()
     {
-
         quit = false;
-        z = 0.0f;
+        z = -500.0f;
         x = 0.0f;
     }
 
+
+    // Create a house (convex polyhedra)
+    // All faces must use anti-clockwise winding order
+    void createPolygons() {
+        SolidPolygon3D poly;
+
+        // walls
+        poly = SolidPolygon3D(
+            Vector3D(-200, 0, -1000),
+            Vector3D(200, 0, -1000),
+            Vector3D(200, 250, -1000),
+            Vector3D(-200, 250, -1000));
+        poly.setColor(MAKE_RGB32(255, 255, 0));
+        polys.push_back(poly);
+        poly = SolidPolygon3D(
+            Vector3D(-200, 0, -1400),
+            Vector3D(-200, 250, -1400),
+            Vector3D(200, 250, -1400),
+            Vector3D(200, 0, -1400));
+        poly.setColor(MAKE_RGB32(128, 128, 0));
+        polys.push_back(poly);
+        poly = SolidPolygon3D(
+            Vector3D(-200, 0, -1400),
+            Vector3D(-200, 0, -1000),
+            Vector3D(-200, 250, -1000),
+            Vector3D(-200, 250, -1400));
+        poly.setColor(MAKE_RGB32(128, 128, 0));
+        polys.push_back(poly);
+        poly = SolidPolygon3D(
+            Vector3D(200, 0, -1000),
+            Vector3D(200, 0, -1400),
+            Vector3D(200, 250, -1400),
+            Vector3D(200, 250, -1000));
+        poly.setColor(MAKE_RGB32(128, 128, 0));
+        polys.push_back(poly);
+
+        // door and windows
+        poly = SolidPolygon3D(
+            Vector3D(0, 0, -1000),
+            Vector3D(75, 0, -1000),
+            Vector3D(75, 125, -1000),
+            Vector3D(0, 125, -1000));
+        poly.setColor(MAKE_RGB32(2, 40, 90));
+        polys.push_back(poly);
+        poly = SolidPolygon3D(
+            Vector3D(-150, 150, -1000),
+            Vector3D(-100, 150, -1000),
+            Vector3D(-100, 200, -1000),
+            Vector3D(-150, 200, -1000));
+        poly.setColor(MAKE_RGB32(25, 40, 40));
+        polys.push_back(poly);
+
+        // roof
+        poly = SolidPolygon3D(
+            Vector3D(-200, 250, -1000),
+            Vector3D(200, 250, -1000),
+            Vector3D(75, 400, -1200),
+            Vector3D(-75, 400, -1200));
+        poly.setColor(MAKE_RGB32(220, 0, 0));
+        polys.push_back(poly);
+        poly = SolidPolygon3D(
+            Vector3D(-200, 250, -1400),
+            Vector3D(-200, 250, -1000),
+            Vector3D(-75, 400, -1200));
+        poly.setColor(MAKE_RGB32(128, 0, 0));
+        polys.push_back(poly);
+        poly = SolidPolygon3D(
+            Vector3D(200, 250, -1400),
+            Vector3D(-200, 250, -1400),
+            Vector3D(-75, 400, -1200),
+            Vector3D(75, 400, -1200));
+        poly.setColor(MAKE_RGB32(128, 0, 0));
+        polys.push_back(poly);
+        poly = SolidPolygon3D(
+            Vector3D(200, 250, -1000),
+            Vector3D(200, 250, -1400),
+            Vector3D(75, 400, -1200));
+        poly.setColor(MAKE_RGB32(128, 0, 0));
+        polys.push_back(poly);
+    }
 
     int run()
     {
         Display display( "Fullscreen Example", width, height, Output::Windowed, Mode::TrueColor );
 
-        // All faces must use anti-clockwise winding order
-        // Face 1
-        Vector3D v0(-50.0f, -50.0f, 50.0f);
-        Vector3D v1( 50.0f, -50.0f, 50.0f);
-        Vector3D v2(  0.0f,  50.0f,  0.0f);
-
-        // Face 2
-        Vector3D v3( 50.0f, -50.0f, 50.0f);
-        Vector3D v4( 50.0f, -50.0f, -50.0f);
-        Vector3D v5(  0.0f,  50.0f, 0.0f);
-
-        // Face 3
-        Vector3D v6( 50.0f, -50.0f, -50.0f);
-        Vector3D v7(-50.0f, -50.0f, -50.0f);
-        Vector3D v8(  0.0f,  50.0f,   0.0f);
-
-        // Face 4
-        Vector3D v9( -50.0f, -50.0f, -50.0f);
-        Vector3D v10(-50.0f, -50.0f,  50.0f);
-        Vector3D v11(  0.0f,  50.0f,  0.0f);
-        
-           
         // register listener
         display.listener(this);
         
+        createPolygons();
         ViewWindow view(0, 0, width, height, DegToRad(75));
-        Transform3D camera(x, 0.0f, 150.0f);
+        Transform3D camera(x, 200.0f, z);
         PolygonRenderer& polygonRenderer = SolidPolygonRenderer(camera, view);
-
-        SolidPolygon3D poly1(v0, v1, v2);
-        SolidPolygon3D poly2(v3, v4, v5);
-        SolidPolygon3D poly3(v6, v7, v8);
-        SolidPolygon3D poly4(v9, v10, v11);
-
-        poly1.setColor(MAKE_RGB32(255, 0, 0));
-        poly2.setColor(MAKE_RGB32(0, 255, 0));
-        poly3.setColor(MAKE_RGB32(0, 0, 255));
-        poly4.setColor(MAKE_RGB32(255, 255, 0));
         
-        vector<SolidPolygon3D> polys;
-        polys.push_back(poly1);
-        polys.push_back(poly2);
-        polys.push_back(poly3);
-        polys.push_back(poly4);
-        
-        
-        Transform3D rot;
-        rot.rotateAngleY(DegToRad(1.0f));
-        //rot.setLocation(Vector3D(0.0f, 0.0f, 50.0f));
-
         while (!quit)
-        {           
-            for (int i=0; i!=polys.size(); ++i)
-            {
-                polys[i].add(rot);
-            }
+        {    
+            polygonRenderer.getCamera().getLocation().x = x;
+
+#ifdef _DEBUG
+            cout << polygonRenderer.getCamera().getLocation() << endl;
+#endif // _DEBUG
+
+            polygonRenderer.getCamera().getLocation().z = z;
 
             cls();
 
@@ -105,11 +145,12 @@ public:
                 polygonRenderer.draw(&polys[i]);
             }
 
-            display.update(pixels);
+            display.update(pixels);            
         }
 
         return 0;
     }
+
 
 protected:
 
@@ -125,22 +166,22 @@ protected:
     {
         if (key == Key::Up) 
         {
-            z += 2.0f;    
+            z += 10.0f;    
         }
 
         if (key == Key::Down) 
         {
-            z -= 2.0f;    
+            z -= 10.0f;    
         }
 
         if (key == Key::Left) 
         {
-            x -= 2.0f;    
+            x -= 10.0f;    
         }
 
         if (key == Key::Right) 
         {
-            x += 2.0f;    
+            x += 10.0f;    
         }
     }
 
@@ -179,6 +220,7 @@ private:
     //Display display;//  ( "Fullscreen Example", width, height, Output::Windowed, Mode::TrueColor );
     bool quit;
     float z, x;
+    vector<SolidPolygon3D> polys;
     
 
 };
@@ -188,8 +230,6 @@ int main(int argc, char* argv[])
 {
     Application app;
     app.run();
-
-
 }
 
 

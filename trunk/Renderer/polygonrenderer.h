@@ -1,7 +1,9 @@
 #ifndef polygonrenderer_h
 #define polygonrenderer_h
 
-#include "math3d.h"
+#include "vector3d.h"
+#include "transform3D.h"
+#include "polygon3D.h"
 #include "scanconverter.h"
 #include "viewwindow.h"
 #include "primitives.h"
@@ -24,7 +26,7 @@ namespace Quokka3D
         Transform3D m_camera;
         ViewWindow m_viewWindow;
         bool m_clearViewEveryFrame;
-        Polygon3D* m_sourcePolygon;
+        Polygon3D* m_sourcePolygon;     // a pointer because behavior is polymorphic
         Polygon3D m_destPolygon;
 
         void init(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame);
