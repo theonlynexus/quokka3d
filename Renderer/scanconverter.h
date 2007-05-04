@@ -4,7 +4,8 @@
 #include <vector>
 #include <limits>
 #include "viewwindow.h"
-#include "math3d.h"
+#include "vector3d.h"
+#include "polygon3D.h"
 
 namespace Quokka3D
 {
@@ -26,6 +27,7 @@ namespace Quokka3D
 
     public:
         ScanConverter() {}
+        //ScanConverter(int i) : m_top(0), m_bottom(0) {}
         ScanConverter(ViewWindow& view) { m_view = view; m_top = m_bottom = 0; }
 
         int getTopBoundary() const { return m_top; }

@@ -1,7 +1,8 @@
 #ifndef solidpolygon3d_h
 #define solidpolygon3d_h
 
-#include "math3d.h"
+#include "vector3d.h"
+#include "polygon3D.h"
 
 namespace Quokka3D
 {

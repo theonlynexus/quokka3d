@@ -184,7 +184,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\math3d.cpp"
+				RelativePath=".\polygon3D.cpp"
 				>
 			</File>
 			<File
@@ -193,10 +193,6 @@
 			</File>
 			<File
 				RelativePath=".\primitives.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Renderer.cpp"
 				>
 			</File>
 			<File
@@ -212,6 +208,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\vector3d.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\viewwindow.cpp"
 				>
 			</File>
@@ -222,7 +222,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\math3d.h"
+				RelativePath=".\polygon3D.h"
 				>
 			</File>
 			<File
@@ -243,6 +243,14 @@
 			</File>
 			<File
 				RelativePath=".\solidpolygonrenderer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\transform3D.h"
+				>
+			</File>
+			<File
+				RelativePath=".\vector3d.h"
 				>
 			</File>
 			<File
