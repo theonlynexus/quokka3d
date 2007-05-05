@@ -22,7 +22,7 @@ using namespace PixelToaster;
 const int width = 640;
 const int height = 480;
 
-vector<TrueColorPixel> pixels( width * height );    // screen is a linear sequence of pixels
+std::vector<TrueColorPixel> pixels(width * height);    // screen is a linear sequence of pixels
 
 class Application : public Listener
 {
@@ -31,8 +31,9 @@ public:
     Application()
     {
         quit = false;
-        z = -500.0f;
         x = 0.0f;
+        y = 0.0f;
+        z = -500.0f;
     }
 
 
@@ -125,19 +126,22 @@ public:
         
         createPolygons();
         ViewWindow view(0, 0, width, height, DegToRad(75));
-        Transform3D camera(x, 200.0f, z);
+        Transform3D camera(x, y, z);
         PolygonRenderer& polygonRenderer = SolidPolygonRenderer(camera, view);
         
+      
         while (!quit)
         {    
             polygonRenderer.getCamera().getLocation().x = x;
+            polygonRenderer.getCamera().getLocation().y = y;
+            polygonRenderer.getCamera().getLocation().z = z;
+            polygonRenderer.getCamera().setAngleY(DegToRad(angleY));
+
 
 #ifdef _DEBUG
             cout << polygonRenderer.getCamera().getLocation() << endl;
 #endif // _DEBUG
-
-            polygonRenderer.getCamera().getLocation().z = z;
-
+           
             cls();
 
             for (int i=0; i!=polys.size(); ++i)
@@ -166,12 +170,12 @@ protected:
     {
         if (key == Key::Up) 
         {
-            z += 10.0f;    
+            z -= 10.0f;    
         }
 
         if (key == Key::Down) 
         {
-            z -= 10.0f;    
+            z += 10.0f;    
         }
 
         if (key == Key::Left) 
@@ -182,6 +186,26 @@ protected:
         if (key == Key::Right) 
         {
             x += 10.0f;    
+        }
+
+        if (key == Key::PageUp) 
+        {
+            y += 10.0f;    
+        }
+
+        if (key == Key::PageDown) 
+        {
+            y -= 10.0f;    
+        }
+
+        if (key == Key::A) 
+        {
+            angleY -= 1.f;    
+        }
+
+        if (key == Key::D) 
+        {
+            angleY += 1.f;  
         }
     }
 
@@ -219,7 +243,7 @@ private:
 
     //Display display;//  ( "Fullscreen Example", width, height, Output::Windowed, Mode::TrueColor );
     bool quit;
-    float z, x;
+    float x, y, z, angleY;  // camera location
     vector<SolidPolygon3D> polys;
     
 
