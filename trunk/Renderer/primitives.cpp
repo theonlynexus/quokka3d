@@ -6,43 +6,11 @@ using namespace PixelToaster;
 namespace Quokka3D
 {
 
-    void cls()
-    {
-        memset((void*)&pixels[0], 0, pixels.size()*4); 
+    
 
-        /*for(vector<TrueColorPixel>::iterator i = pixels.begin(); i != pixels.end(); ++i)
-            i->integer = (DWORD)0;*/
-    }
+    
 
-    // Plot pixel using PixelToaster in TrueColor mode
-    void plot_pixel(int x,int y, TRUECOLOR color)
-    {   
-      //  PixelToaster video memory is laid out linearly, so to plot [x,y] we 
-      //  can use the formula: pixels(y * x_res + x). Eg To speed up the plot we can use shifts
-      //  instead of multiplication for common resolutions:
-      //  y*320  = y*256 + y*64  = y*2^8 + y*2^6
-      //  y*640  = y*512 + y*128 = y*2^9 + y*2^7
-      //  y*800  = y*512 + y*256 + y*32 = y*2^9 + y*2^8 + y*2^5
-      //  y*1024 = y*2^10
-
-      //  pixels[(y<<8)+(y<<6)+x].integer = color;  // 320x200
-      //  pixels[(y<<9)+(y<<7)+x].integer = color;  // 640x480
-      //  pixels[(y<<9)+(y<<8)+(y<<5)+x].integer = color;  // 800x600
-      //  pixels[(y<<10)+x].integer = color;  // 1024x768
-        
-        // if this is slow, try one of the above lines
-        pixels[y*width+x].integer = color;
-         
-    }
-
-    // Draw a horizontal line
-    void line_fast(int x1, int x2, int y, unsigned int color)
-    {
-        for (int x=x1; x<=x2; ++x)
-        {
-            plot_pixel(x, y, color);
-        }
-    }
+    
 
 
     /**************************************************************************
