@@ -17,7 +17,7 @@ Polygon3D::Polygon3D()
 }
 
 
-Polygon3D::Polygon3D(Vector3D& v0, Vector3D& v1, Vector3D& v2)
+Polygon3D::Polygon3D(const Vector3D& v0, const Vector3D& v1, const Vector3D& v2)
 {
     m_numVertices = 3;
     m_vec3DArray.push_back(v0);
@@ -27,7 +27,7 @@ Polygon3D::Polygon3D(Vector3D& v0, Vector3D& v1, Vector3D& v2)
 }
 
 
-Polygon3D::Polygon3D(Vector3D& v0, Vector3D& v1, Vector3D& v2, Vector3D& v3)
+Polygon3D::Polygon3D(const Vector3D& v0, const Vector3D& v1, const Vector3D& v2, const Vector3D& v3)
 {
     m_numVertices = 4;
     m_vec3DArray.push_back(v0);
@@ -38,7 +38,7 @@ Polygon3D::Polygon3D(Vector3D& v0, Vector3D& v1, Vector3D& v2, Vector3D& v3)
 }
 
 
-Polygon3D::Polygon3D(Vec3DArray& v)
+Polygon3D::Polygon3D(const Vec3DArray& v)
 {
     m_numVertices = (int)v.size();
     m_vec3DArray = v;           // possibly slow?

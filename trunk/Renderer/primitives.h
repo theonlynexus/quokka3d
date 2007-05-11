@@ -40,26 +40,26 @@ namespace Quokka3D
         //  y*800  = y*512 + y*256 + y*32 = y*2^9 + y*2^8 + y*2^5
         //  y*1024 = y*2^10
 
-        switch(width)
-        {
-        case 640:
-            pixels[(y<<9) + (y<<7) + x].integer = color;
-        	break;
-        case 800:
-            pixels[(y<<9) + (y<<8) + (y<<5)+x].integer = color;
-        	break;
-        case 1024:
-            pixels[(y<<10) + x].integer = color;
-            break;
-        case 320:
-            pixels[(y<<8) + (y<<6) +x].integer = color;
-            break;
-        default:
-            break;
-        }
+        //switch(width)
+        //{
+        //case 640:
+        //    pixels[(y<<9) + (y<<7) + x].integer = color;
+        //	break;
+        //case 800:
+        //    pixels[(y<<9) + (y<<8) + (y<<5)+x].integer = color;
+        //	break;
+        //case 1024:
+        //    pixels[(y<<10) + x].integer = color;
+        //    break;
+        //case 320:
+        //    pixels[(y<<8) + (y<<6) +x].integer = color;
+        //    break;
+        //default:
+        //    break;
+        //}
 
         // Or, be simple and use this
-        // pixels[y*width+x].integer = color;
+        pixels[y*width+x].integer = color;
 
     }
 

@@ -18,13 +18,24 @@ namespace Quokka3D
         m_viewWindow = viewWindow;
         m_clearViewEveryFrame = clearViewEveryFrame;
         m_scanConverter = ScanConverter(viewWindow);
+        m_sourcePolygon = NULL;
+        m_numClipped = m_numFacing = 0;
         
+    }
+
+    void PolygonRenderer::startFrame()
+    {
+        if (m_clearViewEveryFrame)
+        {
+            cls();
+        }
     }
 
     bool PolygonRenderer::draw(Polygon3D* poly)
     {
         if ((*poly).isFacing(m_camera.getLocation()))
         {
+            m_numFacing++;
             m_sourcePolygon = poly; // save the source poly in case data is needed later
             m_destPolygon = *poly;
             m_destPolygon.subtract(m_camera);
@@ -39,7 +50,10 @@ namespace Quokka3D
                     return true;
                 }
             }
+            else
+                m_numClipped++;
         }
+       
         return false;
     }
 
