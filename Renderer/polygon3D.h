@@ -22,9 +22,9 @@ namespace Quokka3D
     {
     public:
         Polygon3D();
-        Polygon3D(Vector3D&, Vector3D&, Vector3D&);
-        Polygon3D(Vector3D&, Vector3D&, Vector3D&, Vector3D&);
-        Polygon3D(Vec3DArray&);
+        Polygon3D(const Vector3D&, const Vector3D&, const Vector3D&);
+        Polygon3D(const Vector3D&, const Vector3D&, const Vector3D&, const Vector3D&);
+        Polygon3D(const Vec3DArray&);
 
         // default assignment and copy ctor should work ok
 
