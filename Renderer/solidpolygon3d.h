@@ -4,6 +4,7 @@
 #include "vector3d.h"
 #include "polygon3D.h"
 
+
 namespace Quokka3D
 {
     class SolidPolygon3D : public Polygon3D
@@ -17,11 +18,15 @@ namespace Quokka3D
         unsigned int getColor() const { return m_color; }
         void setColor(unsigned int color) { m_color = color; }
 
+        
+
 
 
     protected:
     private:
          unsigned int m_color;   // 32-bit color XRGB
+         
+
     };
 
 }

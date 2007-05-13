@@ -4,7 +4,6 @@
 #include "vector3d.h"
 
 
-
 namespace Quokka3D
 {
 

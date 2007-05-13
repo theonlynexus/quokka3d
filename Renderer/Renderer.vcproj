@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="PixelToaster.lib"
+				AdditionalDependencies="sdlmain.lib sdl.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="PixelToaster.lib"
+				AdditionalDependencies="sdlmain.lib sdl.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -192,15 +192,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\primitives.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\scanconverter.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\simpletest2.cpp"
+				RelativePath=".\sdl_framework.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sdl_test1.cpp"
 				>
 			</File>
 			<File
@@ -230,11 +230,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\primitives.h"
+				RelativePath=".\scanconverter.h"
 				>
 			</File>
 			<File
-				RelativePath=".\scanconverter.h"
+				RelativePath=".\sdl_framework.h"
 				>
 			</File>
 			<File
