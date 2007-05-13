@@ -10,12 +10,9 @@
 #include "solidpolygonrenderer.h"
 #include "PixelToaster.h"
 
-
 using namespace std;
 using namespace Quokka3D;
 using namespace PixelToaster;
-
-
 
 #define MAKE_RGB32(r, g, b) ((((BYTE)(b)|((WORD)((BYTE)(g))<< 8 ))|(((DWORD)(BYTE)(r))<< 16 )))
 
@@ -51,7 +48,6 @@ public:
         diff_x = 0.0f;
         diff_y = 0.0f;
         mouseMoved = false;
-
     }
 
 
@@ -376,9 +372,6 @@ private:
     Timer timer;
     int numFrames;
     bool firstRun, mouseMoved;
-    
-    
-
 };
 
 
