@@ -27,7 +27,7 @@ namespace Quokka3D
     {
         if (m_clearViewEveryFrame)
         {
-           // cls();
+            cls();
         }
     }
 

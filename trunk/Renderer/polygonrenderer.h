@@ -37,6 +37,8 @@ namespace Quokka3D
         
 
         void init(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame);
+
+        // This must be implemented by a subclass - it does the actual drawing
         virtual void drawCurrentPolygon() = 0;
 
     private:
