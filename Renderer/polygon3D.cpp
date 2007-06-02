@@ -49,7 +49,7 @@ Polygon3D::Polygon3D(const Vec3DArray& v)
 // transform each vertex by adding the vector
 Polygon3D& Polygon3D::operator += (const Vector3D& v)
 {
-    for (size_t i=0; i!=m_numVertices; i++) 
+    for (int i=0; i!=m_numVertices; i++) 
     {
         m_vec3DArray[i] += v;
     }
@@ -60,7 +60,7 @@ Polygon3D& Polygon3D::operator += (const Vector3D& v)
 // transform each vertex by subtracting the vector
 Polygon3D& Polygon3D::operator -= (const Vector3D& v)
 {
-    for (size_t i=0; i!=m_numVertices; i++) 
+    for (int i = 0; i != m_numVertices; i++) 
     {
         m_vec3DArray[i] -= v;
     }
@@ -106,7 +106,7 @@ void Polygon3D::subtractRotation(Transform3D& xform) {
 
 void Polygon3D::project(ViewWindow& view)
 {
-    for (size_t i=0; i!=m_numVertices; i++) 
+    for (int i = 0; i != m_numVertices; i++) 
     {
         view.project(m_vec3DArray[i]);
     }
