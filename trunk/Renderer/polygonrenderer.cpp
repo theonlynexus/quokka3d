@@ -2,17 +2,17 @@
 
 namespace Quokka3D
 {
-    PolygonRenderer::PolygonRenderer(Transform3D& camera, ViewWindow& viewWindow)
+    PolygonRenderer::PolygonRenderer(const Transform3D& camera, const ViewWindow& viewWindow)
     {
         init(camera, viewWindow, true);
     }
 
-    PolygonRenderer::PolygonRenderer(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame)
+    PolygonRenderer::PolygonRenderer(const Transform3D& camera, const ViewWindow& viewWindow, bool clearViewEveryFrame)
     {
         init(camera, viewWindow, clearViewEveryFrame);
     }
 
-    void PolygonRenderer::init(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame)
+    void PolygonRenderer::init(const Transform3D& camera, const ViewWindow& viewWindow, bool clearViewEveryFrame)
     {
         m_camera = camera;
         m_viewWindow = viewWindow;

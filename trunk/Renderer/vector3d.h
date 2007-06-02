@@ -205,9 +205,12 @@ namespace Quokka3D
     //    specified vectors.
     inline void Vector3D::cross(const Vector3D& u, const Vector3D& v) 
     {
-        x = u.y * v.z - u.z * v.y;
-        y = u.z * v.x - u.x * v.z;
-        z = u.x * v.y - u.y * v.x;
+        float x1 = u.y * v.z - u.z * v.y;
+        float y1 = u.z * v.x - u.x * v.z;
+        float z1 = u.x * v.y - u.y * v.x;
+        this->x = x1;
+        this->y = y1;
+        this->z = z1;
     }
 
 

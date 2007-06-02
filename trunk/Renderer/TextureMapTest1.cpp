@@ -17,7 +17,7 @@ using namespace std;
 using namespace Quokka3D;
 using namespace PixelToaster;
 
-#define MAKE_RGB32(r, g, b) ((((BYTE)(b)|((WORD)((BYTE)(g))<< 8 ))|(((DWORD)(BYTE)(r))<< 16 )))
+
 
 const int width = 640;
 const int height = 480;
@@ -46,7 +46,7 @@ public:
         firstRun = true;
         x = 0.0f;
         y = 100.0f;
-        z = -500.0f;
+        z = 0.0f;
         numFrames = 0;
         diff_x = 0.0f;
         diff_y = 0.0f;
@@ -57,80 +57,15 @@ public:
     // Create a house (convex polyhedra)
     // All faces must use anti-clockwise winding order
     void createPolygons() {
-        SolidPolygon3D poly;
+        Polygon3D poly;
 
         // walls
-        poly = SolidPolygon3D(
-            Vector3D(-200, 0, -1000),
-            Vector3D(200, 0, -1000),
-            Vector3D(200, 250, -1000),
-            Vector3D(-200, 250, -1000));
-        poly.setColor(MAKE_RGB32(255, 255, 0));
-        polys.push_back(poly);
-        poly = SolidPolygon3D(
-            Vector3D(-200, 0, -1400),
-            Vector3D(-200, 250, -1400),
-            Vector3D(200, 250, -1400),
-            Vector3D(200, 0, -1400));
-        poly.setColor(MAKE_RGB32(128, 128, 0));
-        polys.push_back(poly);
-        poly = SolidPolygon3D(
-            Vector3D(-200, 0, -1400),
-            Vector3D(-200, 0, -1000),
-            Vector3D(-200, 250, -1000),
-            Vector3D(-200, 250, -1400));
-        poly.setColor(MAKE_RGB32(128, 128, 0));
-        polys.push_back(poly);
-        poly = SolidPolygon3D(
-            Vector3D(200, 0, -1000),
-            Vector3D(200, 0, -1400),
-            Vector3D(200, 250, -1400),
-            Vector3D(200, 250, -1000));
-        poly.setColor(MAKE_RGB32(128, 128, 0));
-        polys.push_back(poly);
-
-        // door and windows
-        poly = SolidPolygon3D(
-            Vector3D(0, 0, -1000),
-            Vector3D(75, 0, -1000),
-            Vector3D(75, 125, -1000),
-            Vector3D(0, 125, -1000));
-        poly.setColor(MAKE_RGB32(2, 40, 90));
-        polys.push_back(poly);
-        poly = SolidPolygon3D(
-            Vector3D(-150, 150, -1000),
-            Vector3D(-100, 150, -1000),
-            Vector3D(-100, 200, -1000),
-            Vector3D(-150, 200, -1000));
-        poly.setColor(MAKE_RGB32(25, 40, 40));
-        polys.push_back(poly);
-
-        // roof
-        poly = SolidPolygon3D(
-            Vector3D(-200, 250, -1000),
-            Vector3D(200, 250, -1000),
-            Vector3D(75, 400, -1200),
-            Vector3D(-75, 400, -1200));
-        poly.setColor(MAKE_RGB32(220, 0, 0));
-        polys.push_back(poly);
-        poly = SolidPolygon3D(
-            Vector3D(-200, 250, -1400),
-            Vector3D(-200, 250, -1000),
-            Vector3D(-75, 400, -1200));
-        poly.setColor(MAKE_RGB32(128, 0, 0));
-        polys.push_back(poly);
-        poly = SolidPolygon3D(
-            Vector3D(200, 250, -1400),
-            Vector3D(-200, 250, -1400),
-            Vector3D(-75, 400, -1200),
-            Vector3D(75, 400, -1200));
-        poly.setColor(MAKE_RGB32(128, 0, 0));
-        polys.push_back(poly);
-        poly = SolidPolygon3D(
-            Vector3D(200, 250, -1000),
-            Vector3D(200, 250, -1400),
-            Vector3D(75, 400, -1200));
-        poly.setColor(MAKE_RGB32(128, 0, 0));
+        poly = Polygon3D(
+            Vector3D(-128, 256, -1000),
+            Vector3D(-128, 0, -1000),
+            Vector3D(128, 0, -1000),
+            Vector3D(128, 256, -1000));
+      
         polys.push_back(poly);
     }
 
@@ -138,50 +73,50 @@ public:
     // timeDelta is in seconds
     void update(double timeDelta)
     {
-        float distanceChange = 500.0 * timeDelta;
-        float angleChange = 0.1 * timeDelta;
+        float distanceChange = 500.0f * (float)timeDelta;
+        float angleChange = 0.1f * (float)timeDelta;
 
-        if (keyW == true)
+        if (keyW)
         {
             polygonRenderer->getCamera().getLocation().x -= distanceChange * polygonRenderer->getCamera().getSinAngleY();  
             polygonRenderer->getCamera().getLocation().z -= distanceChange * polygonRenderer->getCamera().getCosAngleY();
         }
-        if (keyS == true)
+        if (keyS)
         {
             polygonRenderer->getCamera().getLocation().x += distanceChange * polygonRenderer->getCamera().getSinAngleY();  
             polygonRenderer->getCamera().getLocation().z += distanceChange * polygonRenderer->getCamera().getCosAngleY();  
         }
-        if (keyA == true)
+        if (keyA)
         {
             polygonRenderer->getCamera().getLocation().x -= distanceChange * polygonRenderer->getCamera().getCosAngleY();  
             polygonRenderer->getCamera().getLocation().z += distanceChange * polygonRenderer->getCamera().getSinAngleY();  
         }
-        if (keyD == true)
+        if (keyD)
         {
             polygonRenderer->getCamera().getLocation().x += distanceChange * polygonRenderer->getCamera().getCosAngleY();  
             polygonRenderer->getCamera().getLocation().z -= distanceChange * polygonRenderer->getCamera().getSinAngleY();  
         }
-        if (keyUp == true)
+        if (keyUp)
         {
             polygonRenderer->getCamera().getLocation().y += distanceChange;     
         }
-        if (keyDown == true)
+        if (keyDown)
         {
             polygonRenderer->getCamera().getLocation().y -= distanceChange;                
         }
-        if (keyRotLeft == true)
+        if (keyRotLeft)
         {
             polygonRenderer->getCamera().rotateAngleY(angleChange);  
         }
-        if (keyRotRight == true)
+        if (keyRotRight)
         {
             polygonRenderer->getCamera().rotateAngleY(-angleChange);             
         }
-        if (keyTiltLeft == true)
+        if (keyTiltLeft)
         {
             polygonRenderer->getCamera().rotateAngleZ(angleChange);  
         }
-        if (keyTiltRight == true)
+        if (keyTiltRight)
         {
             polygonRenderer->getCamera().rotateAngleZ(-angleChange);             
         }
@@ -199,7 +134,7 @@ public:
     {
         polygonRenderer->startFrame();
 
-        for (int i=0; i!=polys.size(); ++i)
+        for (size_t i=0; i!=polys.size(); ++i)
         {
             polygonRenderer->draw(&polys[i]);
         }
@@ -215,16 +150,14 @@ public:
         // register listener
         display.listener(this);
         
-        
-
         createPolygons();
         ViewWindow view(0, 0, width, height, DegToRad(75));
         Transform3D camera(x, y, z);
-        polygonRenderer = new SolidPolygonRenderer(camera, view); //remember to delete
+        polygonRenderer = new SimpleTexturedPolygonRenderer(camera, view, "test_pattern.png"); //remember to delete
         
 
         // TEST
-        SimpleTexturedPolygonRenderer* stpr = new SimpleTexturedPolygonRenderer(camera, view, "todd.png");
+        // SimpleTexturedPolygonRenderer* stpr = new SimpleTexturedPolygonRenderer(camera, view, "test_pattern.png");
         // END OF TEST
 
         double time = timer.time();
@@ -375,8 +308,8 @@ private:
     //Display display;//  ( "Fullscreen Example", width, height, Output::Windowed, Mode::TrueColor );
     bool quit;
     float x, y, z, angleY;  // camera location and current rotation angle
-    vector<SolidPolygon3D> polys;
-    //vector<Polygon3D> polys;
+    //vector<SolidPolygon3D> polys;
+    vector<Polygon3D> polys;
     PolygonRenderer* polygonRenderer ;
     bool keyW, keyS, keyA, keyD, keyUp, keyDown, keyRotLeft, keyRotRight, keyTiltLeft, keyTiltRight;
     float mouse_x, mouse_y, curr_mouse_x, curr_mouse_y, diff_x, diff_y;

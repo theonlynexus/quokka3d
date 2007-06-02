@@ -9,8 +9,8 @@ namespace Quokka3D
     {
     public:
         SolidPolygonRenderer() {}
-        SolidPolygonRenderer(Transform3D& camera, ViewWindow& viewWindow) { init(camera, viewWindow, true); }
-        SolidPolygonRenderer(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame) 
+        SolidPolygonRenderer(const Transform3D& camera, const ViewWindow& viewWindow) { init(camera, viewWindow, true); }
+        SolidPolygonRenderer(const Transform3D& camera, const ViewWindow& viewWindow, bool clearViewEveryFrame) 
             { init(camera, viewWindow, clearViewEveryFrame); }
 
 

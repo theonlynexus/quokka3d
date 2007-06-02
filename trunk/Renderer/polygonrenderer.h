@@ -16,8 +16,8 @@ namespace Quokka3D
         PolygonRenderer() {}
         virtual ~PolygonRenderer() {}
 
-        PolygonRenderer(Transform3D& camera, ViewWindow& viewWindow);
-        PolygonRenderer(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame);
+        PolygonRenderer(const Transform3D& camera, const ViewWindow& viewWindow);
+        PolygonRenderer(const Transform3D& camera, const ViewWindow& viewWindow, bool clearViewEveryFrame);
         Transform3D& getCamera()  { return m_camera; }
         void startFrame();
         void endFrame() {};
@@ -36,7 +36,7 @@ namespace Quokka3D
         Polygon3D m_destPolygon;
         
 
-        void init(Transform3D& camera, ViewWindow& viewWindow, bool clearViewEveryFrame);
+        void init(const Transform3D& camera, const ViewWindow& viewWindow, bool clearViewEveryFrame);
 
         // This must be implemented by a subclass - it does the actual drawing
         virtual void drawCurrentPolygon() = 0;

@@ -12,6 +12,9 @@ typedef unsigned char BYTE;
 typedef unsigned short WORD;
 typedef unsigned int DWORD;
 
+#define MAKE_RGB32(r, g, b) ((((BYTE)(b)|((WORD)((BYTE)(g))<< 8 ))|(((DWORD)(BYTE)(r))<< 16 )))
+#define PITCH 4 // PixelToaster works with a 32-bit buffer
+
 namespace Quokka3D 
 {
     #define sgn(x) ((x<0)?-1:((x>0)?1:0))       // macro to return the sign of a number

@@ -28,7 +28,7 @@ namespace Quokka3D
     public:
         ScanConverter() {}
         //ScanConverter(int i) : m_top(0), m_bottom(0) {}
-        ScanConverter(ViewWindow& view) { m_view = view; m_top = m_bottom = 0; }
+        ScanConverter(const ViewWindow& view) { m_view = view; m_top = m_bottom = 0; }
 
         int getTopBoundary() const { return m_top; }
         int getBottomBoundary() const { return m_bottom; }
