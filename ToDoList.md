@@ -1,0 +1,5 @@
+# Quokka3D To-Do List #
+  * Improve view frustum culling. Currently polygons are only clipped to the near plane. Should be clipped to the other 5 planes.
+  * Add rendering to SDL
+  * Add font classes
+  * Add framerate counter
